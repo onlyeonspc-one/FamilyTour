@@ -2,7 +2,7 @@ export interface ItineraryItem {
   id: string;
   time: string;
   title: string;
-  description?: string; 
+  description?: string;
   address?: string;
   phoneNumber?: string;
   icon: string;
@@ -20,4 +20,5 @@ export enum ViewState {
   LANDING = 'LANDING',
   SCHEDULE_DAY_1 = 'SCHEDULE_DAY_1',
   SCHEDULE_DAY_2 = 'SCHEDULE_DAY_2',
+  TRAVEL_INFO = 'TRAVEL_INFO',
 }
