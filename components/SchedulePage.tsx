@@ -126,7 +126,7 @@ const INITIAL_DAY_2_DATA: ItineraryItem[] = [
     icon: 'coffee',
     status: 'upcoming',
     hasDetails: true,
-    address: '경북 경주시 동술길 104',
+    address: '경북 경주시 알천북로 369',
   },
   {
     id: 'd2-5',
@@ -146,7 +146,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
     if (day === 1) return savedDay1Data ? [...savedDay1Data] : [...INITIAL_DAY_1_DATA];
     return savedDay2Data ? [...savedDay2Data] : [...INITIAL_DAY_2_DATA];
   });
-  
+
   const [selectedItem, setSelectedItem] = useState<ItineraryItem | null>(null);
 
   const pageTitle = day === 1 ? '신라의 심장을 걷다' : '천년의 시간을 넘어서';
@@ -178,7 +178,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
       let foundCurrent = false;
       const optimizedItems = newItems.map(item => {
         if (item.status === 'completed') return item;
-        
+
         if (!foundCurrent) {
           foundCurrent = true;
           return { ...item, status: 'current' } as ItineraryItem;
@@ -206,20 +206,20 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-schedule-bg text-text-light font-sans relative">
-      
+
       {/* Sticky Header */}
       <div className="sticky top-0 z-30 flex items-center justify-between bg-schedule-bg/80 px-4 py-4 backdrop-blur-md border-b border-white/5">
-        <button 
+        <button
           onClick={onBack}
           className="flex h-10 w-10 items-center justify-start text-text-light hover:text-white"
         >
           <span className="material-symbols-outlined text-3xl">arrow_back_ios_new</span>
         </button>
-        
+
         <h2 className="text-lg font-bold tracking-tight text-white">{dateTitle}</h2>
-        
+
         <div className="flex w-10 justify-end">
-            <span className="material-symbols-outlined text-3xl text-text-light">edit_calendar</span>
+          <span className="material-symbols-outlined text-3xl text-text-light">edit_calendar</span>
         </div>
       </div>
 
@@ -237,7 +237,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
           <span className="text-sm font-normal text-text-muted">{Math.floor(completedCount)}/{totalCount} 완료</span>
         </div>
         <div className="h-2 w-full overflow-hidden rounded-full bg-[#8D6E63]/30">
-          <div 
+          <div
             className="h-full rounded-full bg-[#FFCA28] transition-all duration-1000 ease-out"
             style={{ width: `${progressPercent}%` }}
           />
@@ -247,7 +247,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
       {/* Timeline List */}
       <div className="flex flex-1 flex-col px-5 pb-24">
         {items.map((item, index) => (
-          <TimelineItem 
+          <TimelineItem
             key={item.id}
             item={item}
             isLast={index === items.length - 1}
@@ -258,7 +258,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ day, onBack }) => {
       </div>
 
       {/* Detail Modal/Sheet */}
-      <BottomSheet 
+      <BottomSheet
         isOpen={!!selectedItem}
         onClose={() => setSelectedItem(null)}
         title={selectedItem?.title || ''}
